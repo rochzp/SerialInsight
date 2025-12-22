@@ -20,7 +20,7 @@
       </div>
       <n-tabs type="segment" v-model="configs.tabActive">
         <n-tab-pane name="chap1" tab="串口" display-directive="show">
-          <HelloWorld />
+          <SerialScreen />
         </n-tab-pane>
         <n-tab-pane name="chap2" tab="示波器" display-directive="show:lazy">
           <OtherAbility />
@@ -78,7 +78,7 @@ import {
   createDiscreteApi,
   NDialogProvider
 } from 'naive-ui'
-import HelloWorld from './components/HelloWorld.vue'
+import SerialScreen from './components/SerialScreen.vue.vue'
 import OtherAbility from './components/OtherAbility.vue'
 import { computed, reactive,onMounted } from 'vue';
 // import {ipcRenderer} from 'electron';
