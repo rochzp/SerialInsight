@@ -78,7 +78,7 @@ import {
   createDiscreteApi,
   NDialogProvider
 } from 'naive-ui'
-import SerialScreen from './components/SerialScreen.vue.vue'
+import SerialScreen from './components/SerialScreen.vue'
 import OtherAbility from './components/OtherAbility.vue'
 import { computed, reactive,onMounted } from 'vue';
 // import {ipcRenderer} from 'electron';
