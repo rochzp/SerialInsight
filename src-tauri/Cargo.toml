@@ -28,4 +28,8 @@ tauri-plugin-serialplugin = "2.12.1"
 tauri-plugin-clipboard-manager = "2"
 tauri-plugin-http = "2"
 [target."cfg(target_os = \"macos\")".dependencies]
-cocoa = "0.26"
+objc2-app-kit = { version = "0.3", default-features = false, features = [
+    "std",
+    "NSColor",
+    "NSWindow",
+] }

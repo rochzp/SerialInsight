@@ -1,8 +1,10 @@
 #[cfg(target_os = "macos")]
-use tauri::{App, Manager, TitleBarStyle};
+use objc2_app_kit::{NSColor, NSWindow};
+#[cfg(target_os = "macos")]
+use tauri::TitleBarStyle;
 use tauri::{WebviewUrl, WebviewWindowBuilder};
 #[cfg(target_os = "macos")]
-use window_vibrancy::{apply_blur, apply_vibrancy, NSVisualEffectMaterial};
+use window_vibrancy::{apply_vibrancy, NSVisualEffectMaterial};
 
 // Learn more about Tauri commands at https://tauri.app/develop/calling-rust/
 
@@ -31,19 +33,15 @@ pub fn run() {
                 let window = win_builder.build().unwrap();
                 apply_vibrancy(&window, NSVisualEffectMaterial::HudWindow, None, None)
                     .expect("Unsupported platform! 'apply_vibrancy' is only supported on macOS");
-                use cocoa::appkit::{NSColor, NSWindow};
-                use cocoa::base::{id, nil};
-
-                let ns_window = window.ns_window().unwrap() as id;
                 unsafe {
-                    let bg_color = NSColor::colorWithRed_green_blue_alpha_(
-                        nil,
+                    let ns_window: &NSWindow = &*window.ns_window().unwrap().cast();
+                    let bg_color = NSColor::colorWithRed_green_blue_alpha(
                         50.0 / 255.0,
                         158.0 / 255.0,
                         163.5 / 255.0,
                         0.0,
                     );
-                    ns_window.setBackgroundColor_(bg_color);
+                    ns_window.setBackgroundColor(Some(&bg_color));
                 }
             }
 
